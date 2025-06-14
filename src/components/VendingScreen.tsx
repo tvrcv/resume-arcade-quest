@@ -10,7 +10,7 @@ interface VendingScreenProps {
 }
 
 const VendingScreen: React.FC<VendingScreenProps> = ({
-  sections,
+  sections = [], // Add default empty array to prevent undefined error
   selectedSection,
   machineState,
   onProductSelect
