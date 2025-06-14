@@ -1,30 +1,31 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Enhanced 1970s Vending Machine Theme */
+/* Apple-inspired Design System */
 
 @layer base {
   :root {
-    --background: 28 25 23;
-    --foreground: 255 248 220;
-    --card: 41 37 36;
-    --card-foreground: 255 248 220;
-    --popover: 41 37 36;
-    --popover-foreground: 255 248 220;
-    --primary: 234 88 12;
-    --primary-foreground: 255 248 220;
-    --secondary: 168 85 6;
-    --secondary-foreground: 255 248 220;
-    --muted: 68 64 60;
-    --muted-foreground: 163 163 163;
-    --accent: 251 191 36;
-    --accent-foreground: 28 25 23;
-    --destructive: 220 38 38;
-    --destructive-foreground: 255 248 220;
-    --border: 87 83 78;
-    --input: 68 64 60;
-    --ring: 234 88 12;
+    --background: 255 255 255;
+    --foreground: 0 0 0;
+    --card: 255 255 255;
+    --card-foreground: 0 0 0;
+    --popover: 255 255 255;
+    --popover-foreground: 0 0 0;
+    --primary: 59 130 246;
+    --primary-foreground: 255 255 255;
+    --secondary: 243 244 246;
+    --secondary-foreground: 17 24 39;
+    --muted: 249 250 251;
+    --muted-foreground: 107 114 128;
+    --accent: 59 130 246;
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 229 231 235;
+    --input: 249 250 251;
+    --ring: 59 130 246;
     --radius: 0.75rem;
   }
 }
@@ -35,208 +36,156 @@
   }
 
   body {
-    @apply bg-gradient-to-b from-stone-800 via-stone-700 to-stone-900 text-foreground;
-    font-family: 'Courier New', monospace;
+    @apply bg-gradient-to-br from-gray-50 to-gray-100 text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Enhanced scrollbar */
+  /* Apple-style scrollbar */
   .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-    @apply bg-gray-200 rounded-full;
+    @apply bg-transparent;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-gray-400 rounded-full hover:bg-gray-500;
+    @apply bg-gray-300 rounded-full hover:bg-gray-400;
   }
 
   /* Main scrollbar */
   ::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-stone-800;
+    @apply bg-gray-50;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-stone-600 rounded-lg hover:bg-stone-500;
+    @apply bg-gray-300 rounded-full hover:bg-gray-400;
   }
 }
 
 @layer components {
-  .perspective-1000 {
-    perspective: 1000px;
+  /* Apple-inspired glass effect */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  .rotateY-2 {
-    transform: rotateY(2deg);
+  /* Premium button styles */
+  .apple-button {
+    @apply bg-blue-500 text-white font-medium py-3 px-6 rounded-xl;
+    @apply border border-blue-600 shadow-lg transform transition-all duration-200;
+    @apply hover:bg-blue-600 hover:shadow-xl active:scale-95;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   }
 
-  .rotateY-0 {
-    transform: rotateY(0deg);
-  }
-
-  .retro-button {
-    @apply bg-gradient-to-b from-orange-500 to-red-600 text-yellow-100 font-bold py-3 px-6 rounded-xl;
-    @apply border-4 border-orange-700 shadow-xl transform transition-all duration-200;
-    @apply hover:from-orange-400 hover:to-red-500 active:translate-y-1 active:shadow-lg;
-    font-family: 'Courier New', monospace;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.2);
-  }
-
-  .vending-screen {
-    @apply bg-black text-green-400 font-mono text-sm p-4 rounded border-4 border-gray-600;
-    background: linear-gradient(135deg, #001100 0%, #002200 50%, #001100 100%);
-    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
-    font-family: 'Courier New', monospace;
-    box-shadow: inset 0 4px 8px rgba(0,0,0,0.5);
-  }
-
-  .product-window {
-    @apply bg-gradient-to-b from-gray-700 to-gray-900 border-6 border-gray-600 rounded-xl;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-    box-shadow: inset 0 6px 12px rgba(0,0,0,0.6);
+  /* Clean card design */
+  .apple-card {
+    @apply bg-white border border-gray-100 rounded-2xl shadow-lg;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 }
 
-/* Enhanced vending machine animations */
+/* Apple-inspired animations */
 @keyframes vending-drop {
   0% { 
-    transform: translateY(-120px) rotate(0deg); 
+    transform: translateY(-80px) rotate(0deg); 
     opacity: 1; 
   }
   20% { 
-    transform: translateY(-60px) rotate(5deg); 
+    transform: translateY(-40px) rotate(2deg); 
     opacity: 1; 
   }
   40% {
-    transform: translateY(0px) rotate(-3deg);
+    transform: translateY(0px) rotate(-1deg);
     opacity: 1;
   }
   60% {
-    transform: translateY(80px) rotate(2deg);
+    transform: translateY(60px) rotate(1deg);
     opacity: 1;
   }
   80% {
-    transform: translateY(160px) rotate(-1deg);
+    transform: translateY(120px) rotate(-0.5deg);
     opacity: 1;
   }
   100% { 
-    transform: translateY(220px) rotate(0deg); 
+    transform: translateY(180px) rotate(0deg); 
     opacity: 0; 
   }
 }
 
-@keyframes shine {
-  0% { transform: translateX(-100%) skewX(-15deg); }
-  100% { transform: translateX(200%) skewX(-15deg); }
-}
-
 @keyframes scale-in {
   0% {
-    transform: scale(0.8) rotate(-5deg);
+    transform: scale(0.9);
     opacity: 0;
   }
-  50% {
-    transform: scale(1.05) rotate(2deg);
-  }
   100% {
-    transform: scale(1) rotate(0deg);
+    transform: scale(1);
     opacity: 1;
   }
 }
 
-@keyframes product-glow {
+@keyframes gentle-bounce {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: translateY(0);
   }
   50% {
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes subtle-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
   }
 }
 
 .animate-vending-drop {
-  animation: vending-drop 3s ease-in forwards;
-}
-
-.animate-shine {
-  animation: shine 2s ease-in-out infinite;
+  animation: vending-drop 2.5s ease-in forwards;
 }
 
 .animate-scale-in {
-  animation: scale-in 0.6s ease-out forwards;
+  animation: scale-in 0.3s ease-out forwards;
 }
 
-.animate-product-glow {
-  animation: product-glow 2s ease-in-out infinite;
+.animate-gentle-bounce {
+  animation: gentle-bounce 2s ease-in-out infinite;
 }
 
-/* Enhanced 3D perspective effects */
-.perspective-1000 {
-  perspective: 1000px;
+.animate-subtle-glow {
+  animation: subtle-glow 2s ease-in-out infinite;
 }
 
-.rotateY-2 {
-  transform: rotateY(2deg) scale(1.02);
+/* Typography refinements */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 
-.rotateY-0 {
-  transform: rotateY(0deg) scale(1);
+/* Improved focus states */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgb(59 130 246);
+  outline-offset: 2px;
 }
 
-/* Improved gas station atmosphere */
-.gas-station-bg {
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(234, 88, 12, 0.15) 0%, transparent 50%),
-    linear-gradient(135deg, #1c1917 0%, #292524 25%, #1c1917 50%, #44403c 75%, #1c1917 100%);
-}
-
-/* Enhanced scrollbar for product labels */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  @apply bg-gray-300 rounded-full;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-gray-500 rounded-full hover:bg-gray-600;
-}
-
-/* Enhanced glass effects */
-.glass-effect {
-  background: linear-gradient(135deg, 
-    rgba(255,255,255,0.1) 0%, 
-    rgba(255,255,255,0.05) 25%, 
-    transparent 50%, 
-    rgba(0,0,0,0.05) 75%, 
-    rgba(0,0,0,0.1) 100%
-  );
-  backdrop-filter: blur(1px);
-}
-
-.glass-reflection {
-  background: linear-gradient(45deg, 
-    rgba(255,255,255,0.3) 0%, 
-    transparent 50%, 
-    rgba(255,255,255,0.1) 100%
-  );
-}
-
-/* Product realism enhancements */
-.product-stack {
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-}
-
-.mechanical-arm {
-  background: linear-gradient(90deg, #666 0%, #999 50%, #666 100%);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.2);
+/* Smooth transitions for all interactive elements */
+button, a, input, select {
+  transition: all 0.2s ease-in-out;
 }
