@@ -53,19 +53,20 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Gaming theme colors
+				// Japanese Cyberpunk theme colors
 				neon: {
-					cyan: '#00f5ff',
-					purple: '#8b5cf6',
-					green: '#00ff88',
-					orange: '#ff8c00',
-					pink: '#ff69b4'
+					pink: '#ff1493',     // Deep pink
+					cyan: '#00ffff',     // Bright cyan
+					purple: '#8a2be2',   // Blue violet
+					green: '#00ff88',    // Electric green
+					orange: '#ff6600',   // Cyber orange
+					blue: '#0080ff'      // Electric blue
 				},
-				game: {
-					dark: '#0a0a0f',
-					darker: '#050508',
-					panel: '#1a1a2e',
-					border: '#2d2d44'
+				cyber: {
+					dark: 'rgb(8, 8, 16)',
+					darker: 'rgb(4, 4, 8)',
+					panel: 'rgb(12, 12, 24)',
+					border: 'rgb(48, 48, 96)'
 				}
 			},
 			borderRadius: {
@@ -74,8 +75,9 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				'game': ['Orbitron', 'monospace'],
-				'pixel': ['Press Start 2P', 'monospace']
+				'cyber': ['Orbitron', 'monospace'],
+				'pixel': ['Press Start 2P', 'monospace'],
+				'japanese': ['Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', 'sans-serif']
 			},
 			keyframes: {
 				'accordion-down': {
@@ -96,24 +98,27 @@ export default {
 				},
 				'pulse-neon': {
 					'0%, 100%': {
-						boxShadow: '0 0 5px #00f5ff, 0 0 10px #00f5ff, 0 0 15px #00f5ff'
+						boxShadow: '0 0 5px #ff1493, 0 0 10px #ff1493, 0 0 15px #ff1493'
 					},
 					'50%': {
-						boxShadow: '0 0 10px #00f5ff, 0 0 20px #00f5ff, 0 0 30px #00f5ff'
+						boxShadow: '0 0 10px #ff1493, 0 0 20px #ff1493, 0 0 30px #ff1493'
 					}
 				},
-				'level-up': {
-					'0%': {
-						transform: 'scale(1)',
-						opacity: '1'
+				'cyber-glitch': {
+					'0%, 100%': {
+						transform: 'translate(0)'
 					},
-					'50%': {
-						transform: 'scale(1.1)',
-						opacity: '0.8'
+					'20%': {
+						transform: 'translate(-2px, 2px)'
 					},
-					'100%': {
-						transform: 'scale(1)',
-						opacity: '1'
+					'40%': {
+						transform: 'translate(-2px, -2px)'
+					},
+					'60%': {
+						transform: 'translate(2px, 2px)'
+					},
+					'80%': {
+						transform: 'translate(2px, -2px)'
 					}
 				},
 				'slide-in-left': {
@@ -125,14 +130,23 @@ export default {
 						transform: 'translateX(0)',
 						opacity: '1'
 					}
+				},
+				'neon-flicker': {
+					'0%, 100%': {
+						opacity: '1'
+					},
+					'50%': {
+						opacity: '0.8'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-neon': 'pulse-neon 2s ease-in-out infinite',
-				'level-up': 'level-up 0.5s ease-in-out',
-				'slide-in-left': 'slide-in-left 0.6s ease-out'
+				'cyber-glitch': 'cyber-glitch 0.3s ease-in-out',
+				'slide-in-left': 'slide-in-left 0.6s ease-out',
+				'neon-flicker': 'neon-flicker 1.5s ease-in-out infinite'
 			}
 		}
 	},
