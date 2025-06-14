@@ -53,20 +53,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Japanese Cyberpunk theme colors
-				neon: {
-					pink: '#ff1493',     // Deep pink
-					cyan: '#00ffff',     // Bright cyan
-					purple: '#8a2be2',   // Blue violet
-					green: '#00ff88',    // Electric green
-					orange: '#ff6600',   // Cyber orange
-					blue: '#0080ff'      // Electric blue
-				},
-				cyber: {
-					dark: 'rgb(8, 8, 16)',
-					darker: 'rgb(4, 4, 8)',
-					panel: 'rgb(12, 12, 24)',
-					border: 'rgb(48, 48, 96)'
+				// Retro vending machine colors
+				retro: {
+					orange: '#ea580c',
+					red: '#dc2626',
+					yellow: '#fbbf24',
+					brown: '#92400e',
+					cream: '#fef3c7'
 				}
 			},
 			borderRadius: {
@@ -75,9 +68,8 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				'cyber': ['Orbitron', 'monospace'],
-				'pixel': ['Press Start 2P', 'monospace'],
-				'japanese': ['Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', 'sans-serif']
+				'retro': ['Courier New', 'monospace'],
+				'display': ['Courier New', 'monospace']
 			},
 			keyframes: {
 				'accordion-down': {
@@ -96,57 +88,45 @@ export default {
 						height: '0'
 					}
 				},
-				'pulse-neon': {
-					'0%, 100%': {
-						boxShadow: '0 0 5px #ff1493, 0 0 10px #ff1493, 0 0 15px #ff1493'
-					},
-					'50%': {
-						boxShadow: '0 0 10px #ff1493, 0 0 20px #ff1493, 0 0 30px #ff1493'
-					}
-				},
-				'cyber-glitch': {
-					'0%, 100%': {
-						transform: 'translate(0)'
-					},
-					'20%': {
-						transform: 'translate(-2px, 2px)'
-					},
-					'40%': {
-						transform: 'translate(-2px, -2px)'
-					},
-					'60%': {
-						transform: 'translate(2px, 2px)'
-					},
-					'80%': {
-						transform: 'translate(2px, -2px)'
-					}
-				},
-				'slide-in-left': {
+				'vending-drop': {
 					'0%': {
-						transform: 'translateX(-100%)',
+						transform: 'translateY(-100px)',
 						opacity: '0'
 					},
-					'100%': {
-						transform: 'translateX(0)',
-						opacity: '1'
-					}
-				},
-				'neon-flicker': {
-					'0%, 100%': {
+					'50%': {
+						transform: 'translateY(0)',
 						opacity: '1'
 					},
-					'50%': {
-						opacity: '0.8'
+					'100%': {
+						transform: 'translateY(100px)',
+						opacity: '0'
+					}
+				},
+				'retro-blink': {
+					'0%, 50%': {
+						opacity: '1'
+					},
+					'51%, 100%': {
+						opacity: '0'
+					}
+				},
+				'coin-insert': {
+					'0%': {
+						transform: 'translateY(-20px) rotate(0deg)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translateY(20px) rotate(180deg)',
+						opacity: '0'
 					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'pulse-neon': 'pulse-neon 2s ease-in-out infinite',
-				'cyber-glitch': 'cyber-glitch 0.3s ease-in-out',
-				'slide-in-left': 'slide-in-left 0.6s ease-out',
-				'neon-flicker': 'neon-flicker 1.5s ease-in-out infinite'
+				'vending-drop': 'vending-drop 2s ease-in-out',
+				'retro-blink': 'retro-blink 1s infinite',
+				'coin-insert': 'coin-insert 1s ease-in-out'
 			}
 		}
 	},

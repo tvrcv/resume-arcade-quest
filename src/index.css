@@ -3,39 +3,39 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Japanese Cyberpunk theme design system */
+/* 1970s Vending Machine Theme */
 
 @layer base {
   :root {
-    --background: 8 8 16;
-    --foreground: 240 255 255;
+    --background: 43 23 8;
+    --foreground: 255 248 220;
 
-    --card: 12 12 24;
-    --card-foreground: 240 255 255;
+    --card: 52 28 12;
+    --card-foreground: 255 248 220;
 
-    --popover: 12 12 24;
-    --popover-foreground: 240 255 255;
+    --popover: 52 28 12;
+    --popover-foreground: 255 248 220;
 
-    --primary: 315 100% 65%;
-    --primary-foreground: 8 8 16;
+    --primary: 234 88 12;
+    --primary-foreground: 255 248 220;
 
-    --secondary: 24 24 48;
-    --secondary-foreground: 240 255 255;
+    --secondary: 168 85 6;
+    --secondary-foreground: 255 248 220;
 
-    --muted: 24 24 48;
-    --muted-foreground: 160 180 200;
+    --muted: 68 34 14;
+    --muted-foreground: 180 160 140;
 
-    --accent: 180 100% 70%;
-    --accent-foreground: 8 8 16;
+    --accent: 251 191 36;
+    --accent-foreground: 52 28 12;
 
-    --destructive: 0 100% 70%;
-    --destructive-foreground: 240 255 255;
+    --destructive: 220 38 38;
+    --destructive-foreground: 255 248 220;
 
-    --border: 48 48 96;
-    --input: 24 24 48;
-    --ring: 315 100% 65%;
+    --border: 120 60 30;
+    --input: 68 34 14;
+    --ring: 234 88 12;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 }
 
@@ -45,129 +45,93 @@
   }
 
   body {
-    @apply bg-cyber-dark text-foreground font-cyber;
-    background-image: 
-      radial-gradient(circle at 25% 25%, rgba(255, 20, 147, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-      linear-gradient(135deg, rgba(138, 43, 226, 0.05) 0%, rgba(0, 0, 0, 0.8) 100%);
+    @apply bg-gradient-to-b from-orange-200 to-amber-100 text-foreground;
+    font-family: 'Courier New', monospace;
     min-height: 100vh;
   }
 
-  /* Japanese-inspired scrollbar */
+  /* Retro scrollbar */
   ::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-cyber-panel;
-    border-radius: 6px;
+    @apply bg-orange-200;
+    border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-b from-neon-pink to-neon-cyan rounded-full;
-    box-shadow: 
-      0 0 10px rgba(255, 20, 147, 0.5),
-      inset 0 0 5px rgba(0, 255, 255, 0.3);
+    @apply bg-orange-600 rounded;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    box-shadow: 
-      0 0 15px rgba(255, 20, 147, 0.8),
-      inset 0 0 8px rgba(0, 255, 255, 0.5);
+    @apply bg-orange-700;
   }
 }
 
 @layer components {
-  .cyber-panel {
-    @apply bg-cyber-panel border border-cyber-border rounded-xl p-6 relative overflow-hidden;
-    background: linear-gradient(135deg, rgba(24, 24, 48, 0.95) 0%, rgba(12, 12, 24, 0.95) 100%);
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      0 0 20px rgba(255, 20, 147, 0.1);
-    backdrop-filter: blur(10px);
+  .retro-button {
+    @apply bg-gradient-to-b from-orange-500 to-red-600 text-yellow-100 font-bold py-2 px-4 rounded-lg;
+    @apply border-4 border-orange-700 shadow-lg transform transition-all duration-150;
+    @apply hover:from-orange-400 hover:to-red-500 active:translate-y-1 active:shadow-sm;
+    font-family: 'Courier New', monospace;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
   }
 
-  .cyber-panel::before {
-    content: '';
-    @apply absolute inset-0 opacity-30;
-    background: linear-gradient(45deg, transparent 49%, rgba(0, 255, 255, 0.1) 50%, transparent 51%);
+  .vending-screen {
+    @apply bg-black text-green-400 font-mono text-sm p-3 rounded border-2 border-gray-600;
+    background: linear-gradient(135deg, #001100 0%, #002200 100%);
+    text-shadow: 0 0 10px #00ff00;
+    font-family: 'Courier New', monospace;
+  }
+
+  .product-window {
+    @apply bg-gray-800 border-4 border-gray-600 rounded;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    box-shadow: inset 0 4px 8px rgba(0,0,0,0.5);
+  }
+
+  .retro-panel {
+    @apply bg-gradient-to-b from-orange-600 to-red-700 rounded-lg shadow-2xl;
+    @apply border-8 border-orange-800;
+    background-image: 
+      linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
     background-size: 20px 20px;
-  }
-
-  .neon-text {
-    text-shadow: 
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor;
-    filter: brightness(1.2);
-  }
-
-  .cyber-button {
-    @apply relative px-6 py-3 bg-gradient-to-r from-neon-pink to-neon-cyan text-black font-bold rounded-lg;
-    @apply transform transition-all duration-300 hover:scale-105 active:scale-95;
-    box-shadow: 
-      0 4px 15px rgba(255, 20, 147, 0.4),
-      0 0 20px rgba(0, 255, 255, 0.2);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .cyber-button:hover {
-    box-shadow: 
-      0 6px 25px rgba(255, 20, 147, 0.6),
-      0 0 30px rgba(0, 255, 255, 0.4);
-  }
-
-  .stat-bar {
-    @apply relative bg-gray-800 rounded-full overflow-hidden border border-cyber-border;
-    height: 12px;
-  }
-
-  .stat-fill {
-    @apply absolute top-0 left-0 h-full rounded-full transition-all duration-1000 ease-out;
-    background: linear-gradient(90deg, #ff1493, #00ffff, #8a2be2);
-    box-shadow: 
-      0 0 15px rgba(255, 20, 147, 0.6),
-      inset 0 0 5px rgba(255, 255, 255, 0.2);
-  }
-
-  .cyber-card {
-    @apply cyber-panel hover:shadow-lg transform transition-all duration-300 hover:-translate-y-1;
-    border: 1px solid rgba(255, 20, 147, 0.3);
-  }
-
-  .cyber-card:hover {
-    border-color: rgba(0, 255, 255, 0.5);
-    box-shadow: 
-      0 12px 40px rgba(0, 0, 0, 0.5),
-      0 0 30px rgba(255, 20, 147, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  }
-
-  .japanese-text {
-    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
-    line-height: 1.7;
-  }
-
-  .cyber-glow {
-    box-shadow: 
-      0 0 10px rgba(255, 20, 147, 0.5),
-      0 0 20px rgba(0, 255, 255, 0.3),
-      0 0 30px rgba(138, 43, 226, 0.2);
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   }
 }
 
-/* Enhanced readability styles */
-@layer utilities {
-  .text-readable {
-    line-height: 1.8;
-    letter-spacing: 0.025em;
-  }
+/* Retro animations */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
 
-  .heading-readable {
-    line-height: 1.4;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-  }
+@keyframes dispensing {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+.dispensing {
+  animation: dispensing 2s ease-in-out;
+}
+
+/* Typography improvements for readability */
+.text-readable {
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.heading-readable {
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  font-weight: 700;
 }
