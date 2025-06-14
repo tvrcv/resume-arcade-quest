@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import VendingScreen from './VendingScreen';
 import ProductGrid from './ProductGrid';
 import CollectionShelf from './CollectionShelf';
-import VendingButtons from './VendingButtons';
 
 export interface CVSection {
   id: string;
@@ -171,7 +170,7 @@ const VendingMachine: React.FC = () => {
             </div>
           </div>
 
-          {/* Main Digital Screen */}
+          {/* Main Digital Screen - PRIMARY INTERFACE */}
           <div className="mx-8 mb-6">
             <div className="bg-black rounded-2xl border-8 border-gray-700 h-64 overflow-hidden shadow-inner relative">
               <div className="absolute inset-0 bg-gradient-to-b from-green-400/30 via-green-400/15 to-transparent"></div>
@@ -200,17 +199,6 @@ const VendingMachine: React.FC = () => {
                 sections={cvSections}
                 selectedSection={selectedSection}
                 machineState={machineState}
-              />
-            </div>
-          </div>
-
-          {/* Physical Button Panel */}
-          <div className="mx-8 mb-6">
-            <div className="bg-gradient-to-b from-gray-700 to-gray-900 border-6 border-gray-600 rounded-2xl p-4 shadow-inner">
-              <VendingButtons 
-                sections={cvSections}
-                onProductSelect={handleProductSelect}
-                disabled={machineState !== 'idle'}
               />
             </div>
           </div>
