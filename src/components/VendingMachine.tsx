@@ -1,8 +1,8 @@
-
 import React, { useState } from 'react';
 import VendingScreen from './VendingScreen';
 import ProductDisplay from './ProductDisplay';
 import CollectionTray from './CollectionTray';
+import CVDetailsPanel from './CVDetailsPanel';
 
 export interface CVSection {
   id: string;
@@ -124,6 +124,8 @@ const VendingMachine: React.FC = () => {
   ];
 
   const handleProductSelect = async (section: CVSection) => {
+    if (machineState !== 'idle') return;
+    
     console.log('Product selected:', section.buttonCode);
     setSelectedSection(section);
     setMachineState('dispensing');
@@ -145,87 +147,91 @@ const VendingMachine: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-8">
-      
-      {/* Apple-inspired Vending Machine */}
-      <div className="relative">
-        <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-200/50 overflow-hidden"
-             style={{
-               width: '480px',
-               height: '780px',
-               boxShadow: `
-                 0 25px 50px rgba(0,0,0,0.08),
-                 0 0 0 1px rgba(255,255,255,0.9),
-                 inset 0 1px 0 rgba(255,255,255,0.9)
-               `
-             }}>
-          
-          {/* Top Brand Section - Minimal Apple Style */}
-          <div className="relative p-6 bg-gradient-to-b from-white to-gray-50 border-b border-gray-100">
-            <div className="text-center">
-              <h1 className="text-2xl font-light text-gray-900 tracking-wide">
-                CV•MATIC
-              </h1>
-              <p className="text-xs text-gray-500 font-medium tracking-wider uppercase mt-1">
-                Professional Portfolio
-              </p>
+      <div className="flex gap-8 items-start">
+        
+        {/* Main Vending Machine */}
+        <div className="relative">
+          <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-200/50 overflow-hidden"
+               style={{
+                 width: '400px',
+                 height: '700px',
+                 boxShadow: `
+                   0 25px 50px rgba(0,0,0,0.08),
+                   0 0 0 1px rgba(255,255,255,0.9),
+                   inset 0 1px 0 rgba(255,255,255,0.9)
+                 `
+               }}>
+            
+            {/* Top Brand Section */}
+            <div className="relative p-6 bg-gradient-to-b from-white to-gray-50 border-b border-gray-100">
+              <div className="text-center">
+                <h1 className="text-2xl font-light text-gray-900 tracking-wide">
+                  CV•MATIC
+                </h1>
+                <p className="text-xs text-gray-500 font-medium tracking-wider uppercase mt-1">
+                  Professional Portfolio
+                </p>
+              </div>
             </div>
-          </div>
 
-          {/* Interactive Screen - Main Interface */}
-          <div className="mx-6 mt-6 mb-4">
-            <div className="bg-black rounded-2xl border border-gray-200 h-48 overflow-hidden relative"
-                 style={{
-                   boxShadow: `
-                     inset 0 2px 8px rgba(0,0,0,0.15),
-                     0 1px 2px rgba(0,0,0,0.05)
-                   `
-                 }}>
-              <VendingScreen 
-                sections={cvSections}
-                selectedSection={selectedSection}
+            {/* Interactive Screen */}
+            <div className="mx-6 mt-6 mb-4">
+              <div className="bg-black rounded-2xl border border-gray-200 h-40 overflow-hidden relative"
+                   style={{
+                     boxShadow: `
+                       inset 0 2px 8px rgba(0,0,0,0.15),
+                       0 1px 2px rgba(0,0,0,0.05)
+                     `
+                   }}>
+                <VendingScreen 
+                  sections={cvSections}
+                  selectedSection={selectedSection}
+                  machineState={machineState}
+                  onProductSelect={handleProductSelect}
+                />
+              </div>
+            </div>
+
+            {/* Glass Product Display */}
+            <div className="mx-6 mb-4">
+              <div className="relative bg-gradient-to-b from-white/95 to-gray-50/95 border border-gray-200 rounded-2xl h-80 overflow-hidden"
+                   style={{
+                     boxShadow: `
+                       inset 0 1px 3px rgba(0,0,0,0.1),
+                       0 1px 2px rgba(0,0,0,0.05)
+                     `,
+                     backdropFilter: 'blur(20px)',
+                     WebkitBackdropFilter: 'blur(20px)'
+                   }}>
+                
+                {/* Glass reflection effects */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent rounded-2xl"></div>
+                <div className="absolute top-2 left-2 w-12 h-24 bg-gradient-to-br from-white/30 to-transparent rounded-lg transform rotate-12"></div>
+                
+                <ProductDisplay 
+                  sections={cvSections}
+                  selectedSection={selectedSection}
+                  machineState={machineState}
+                />
+              </div>
+            </div>
+
+            {/* Collection Tray */}
+            <div className="mx-6 mb-6">
+              <CollectionTray 
+                dispensedProduct={dispensedProduct}
                 machineState={machineState}
-                onProductSelect={handleProductSelect}
+                onProductCollected={handleProductCollected}
               />
             </div>
           </div>
 
-          {/* Transparent Product Display - Crystal Clear Glass */}
-          <div className="mx-6 mb-4">
-            <div className="relative bg-gradient-to-b from-white/95 to-gray-50/95 border border-gray-200 rounded-2xl h-64 overflow-hidden"
-                 style={{
-                   boxShadow: `
-                     inset 0 1px 3px rgba(0,0,0,0.1),
-                     0 1px 2px rgba(0,0,0,0.05)
-                   `,
-                   backdropFilter: 'blur(20px)',
-                   WebkitBackdropFilter: 'blur(20px)'
-                 }}>
-              
-              {/* Glass reflection effects */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent rounded-2xl"></div>
-              <div className="absolute top-2 left-2 w-12 h-24 bg-gradient-to-br from-white/30 to-transparent rounded-lg transform rotate-12"></div>
-              
-              <ProductDisplay 
-                sections={cvSections}
-                selectedSection={selectedSection}
-                machineState={machineState}
-              />
-            </div>
-          </div>
-
-          {/* Collection Tray - Seamless Integration */}
-          <div className="mx-6 mb-6">
-            <CollectionTray 
-              dispensedProduct={dispensedProduct}
-              machineState={machineState}
-              onProductCollected={handleProductCollected}
-            />
-          </div>
-
+          {/* Subtle floor shadow */}
+          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-96 h-8 bg-black/5 rounded-full blur-lg"></div>
         </div>
 
-        {/* Subtle floor shadow */}
-        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-96 h-8 bg-black/5 rounded-full blur-lg"></div>
+        {/* CV Details Panel */}
+        <CVDetailsPanel sections={cvSections} />
       </div>
     </div>
   );
