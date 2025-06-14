@@ -26,17 +26,21 @@ const CollectionShelf: React.FC<CollectionShelfProps> = ({
             <button
               onClick={onProductCollected}
               className={`
-                w-16 h-20 ${dispensedProduct.productColor} rounded-lg shadow-xl
+                w-16 h-20 rounded-lg shadow-xl
                 transform transition-all duration-200 hover:scale-110 hover:shadow-2xl
                 cursor-pointer border-2 border-white/30 hover:border-white/50
-                relative overflow-hidden
+                relative overflow-hidden bg-cover bg-center
               `}
+              style={{
+                backgroundImage: `url(${dispensedProduct.productImage})`
+              }}
             >
-              <div className="w-full h-4 bg-white/40 rounded-t-lg"></div>
-              <div className="text-white text-xs text-center mt-1 font-bold">
-                {dispensedProduct.buttonCode}
+              <div className="w-full h-4 bg-black/40 rounded-t-lg flex items-center justify-center">
+                <div className="text-white text-xs font-bold">
+                  {dispensedProduct.buttonCode}
+                </div>
               </div>
-              <div className="text-white text-xs text-center font-mono">
+              <div className="absolute bottom-1 left-0 right-0 text-white text-xs text-center font-mono bg-black/50 py-1">
                 CLICK ME
               </div>
               

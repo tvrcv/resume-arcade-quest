@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import VendingScreen from './VendingScreen';
 import ProductGrid from './ProductGrid';
 import CollectionShelf from './CollectionShelf';
+import VendingButtons from './VendingButtons';
 
 export interface CVSection {
   id: string;
@@ -10,6 +11,7 @@ export interface CVSection {
   buttonCode: string;
   productType: 'soda' | 'chips' | 'candy' | 'coffee' | 'sandwich';
   productColor: string;
+  productImage: string;
   content: any;
 }
 
@@ -26,6 +28,7 @@ const VendingMachine: React.FC = () => {
       buttonCode: 'A1',
       productType: 'soda',
       productColor: 'bg-red-600',
+      productImage: 'https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=400',
       content: [
         {
           company: "TechCorp Inc.",
@@ -47,6 +50,7 @@ const VendingMachine: React.FC = () => {
       buttonCode: 'B2',
       productType: 'chips',
       productColor: 'bg-yellow-500',
+      productImage: 'https://images.unsplash.com/photo-1621447504864-d8686e12698c?w=400',
       content: [
         {
           institution: "University of Technology",
@@ -62,6 +66,7 @@ const VendingMachine: React.FC = () => {
       buttonCode: 'C3',
       productType: 'candy',
       productColor: 'bg-purple-600',
+      productImage: 'https://images.unsplash.com/photo-1571506165871-ee72a35bce14?w=400',
       content: [
         "JavaScript/TypeScript",
         "React & Vue.js",
@@ -76,6 +81,7 @@ const VendingMachine: React.FC = () => {
       buttonCode: 'D4',
       productType: 'coffee',
       productColor: 'bg-amber-800',
+      productImage: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400',
       content: {
         email: "your.email@example.com",
         phone: "+1 (555) 123-4567",
@@ -89,6 +95,7 @@ const VendingMachine: React.FC = () => {
       buttonCode: 'E5',
       productType: 'sandwich',
       productColor: 'bg-green-600',
+      productImage: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400',
       content: [
         {
           name: "E-commerce Platform",
@@ -105,6 +112,7 @@ const VendingMachine: React.FC = () => {
   ];
 
   const handleProductSelect = async (section: CVSection) => {
+    console.log('Product selected:', section.buttonCode);
     setSelectedSection(section);
     setMachineState('dispensing');
     setCameraFocused(true);
@@ -113,10 +121,12 @@ const VendingMachine: React.FC = () => {
     setTimeout(() => {
       setDispensedProduct(section);
       setMachineState('collecting');
+      console.log('Product dispensed:', section.buttonCode);
     }, 3000);
   };
 
   const handleProductCollected = () => {
+    console.log('Product collected');
     // Reset everything
     setSelectedSection(null);
     setDispensedProduct(null);
@@ -184,6 +194,17 @@ const VendingMachine: React.FC = () => {
             />
           </div>
 
+          {/* Physical Button Panel */}
+          <div className="mx-6 mb-4">
+            <div className="bg-gradient-to-b from-gray-700 to-gray-900 border-4 border-gray-600 rounded-xl p-3">
+              <VendingButtons 
+                sections={cvSections}
+                onProductSelect={handleProductSelect}
+                disabled={machineState !== 'idle'}
+              />
+            </div>
+          </div>
+
           {/* Collection Shelf */}
           <div className="mx-6 mb-6">
             <CollectionShelf 
@@ -193,20 +214,20 @@ const VendingMachine: React.FC = () => {
             />
           </div>
 
-          {/* Coin Slot and Change Return - Repositioned */}
-          <div className="absolute bottom-8 left-6 flex items-center gap-6">
+          {/* Coin Slot and Change Return - Repositioned to bottom left */}
+          <div className="absolute bottom-4 left-6 flex items-center gap-4">
             <div className="flex flex-col items-center">
-              <div className="w-16 h-8 bg-black rounded-full border-4 border-gray-400 shadow-inner relative overflow-hidden">
+              <div className="w-12 h-6 bg-black rounded-full border-3 border-gray-400 shadow-inner relative overflow-hidden">
                 <div className="absolute inset-1 bg-gradient-to-b from-gray-600 to-black rounded-full"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-2 h-6 bg-black rounded-full"></div>
+                  <div className="w-1 h-4 bg-black rounded-full"></div>
                 </div>
               </div>
-              <p className="text-xs text-yellow-200 font-mono font-bold mt-1">INSERT COINS</p>
+              <p className="text-xs text-yellow-200 font-mono font-bold mt-1">COINS</p>
             </div>
             
             <div className="flex flex-col items-center">
-              <div className="w-12 h-4 bg-black rounded border-3 border-gray-400 shadow-inner">
+              <div className="w-8 h-3 bg-black rounded border-2 border-gray-400 shadow-inner">
                 <div className="w-full h-full bg-gradient-to-b from-gray-600 to-black rounded-sm"></div>
               </div>
               <p className="text-xs text-yellow-200 font-mono font-bold mt-1">CHANGE</p>

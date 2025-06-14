@@ -10,7 +10,7 @@ interface VendingScreenProps {
 }
 
 const VendingScreen: React.FC<VendingScreenProps> = ({
-  sections = [], // Add default empty array to prevent undefined error
+  sections = [],
   selectedSection,
   machineState,
   onProductSelect
@@ -73,7 +73,7 @@ const VendingScreen: React.FC<VendingScreenProps> = ({
           <button
             key={section.id}
             onClick={() => onProductSelect(section)}
-            className="border border-green-600 rounded-lg px-3 py-2 bg-green-900/30 hover:bg-green-800/50 transition-all duration-200 text-left hover:border-green-400"
+            className="border border-green-600 rounded-lg px-3 py-2 bg-green-900/30 hover:bg-green-800/50 transition-all duration-200 text-left hover:border-green-400 cursor-pointer"
           >
             <div className="text-green-400 font-bold">{section.buttonCode}</div>
             <div className="text-green-200 text-xs leading-tight">{section.title}</div>

@@ -100,10 +100,11 @@ const ProductLabel: React.FC<ProductLabelProps> = ({ section }) => {
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="relative max-w-md w-full animate-scale-in">
         <div className={`
-          ${section.productColor} rounded-2xl p-6 mx-auto w-72 h-96 relative 
-          shadow-2xl transform transition-all duration-500
+          rounded-2xl p-6 mx-auto w-72 h-96 relative 
+          shadow-2xl transform transition-all duration-500 overflow-hidden bg-cover bg-center
         `}
         style={{
+          backgroundImage: `url(${section.productImage})`,
           boxShadow: `
             0 25px 50px rgba(0,0,0,0.5),
             0 0 0 4px rgba(255,255,255,0.1),
@@ -112,7 +113,7 @@ const ProductLabel: React.FC<ProductLabelProps> = ({ section }) => {
           `
         }}>
           
-          <div className="bg-gradient-to-b from-white to-gray-100 rounded-xl p-4 h-full flex flex-col shadow-inner border-2 border-white/50">
+          <div className="bg-gradient-to-b from-white/95 to-gray-100/95 rounded-xl p-4 h-full flex flex-col shadow-inner border-2 border-white/50">
             <div className="text-center border-b-2 border-red-600 pb-3 mb-3">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <Package className="text-red-600" size={20} />
