@@ -136,8 +136,8 @@ const VendingMachine: React.FC = () => {
 
   return (
     <div className={`fixed inset-0 transition-all duration-1000 ${
-      cameraFocused ? 'scale-150 translate-y-16' : 'scale-100'
-    } flex items-center justify-center`}>
+      cameraFocused ? 'scale-110 translate-y-8' : 'scale-100'
+    } flex items-center justify-center bg-gradient-to-b from-stone-800 via-stone-700 to-stone-900`}>
       
       {/* Main Vending Machine Body */}
       <div className="relative perspective-1000">
@@ -148,55 +148,65 @@ const VendingMachine: React.FC = () => {
           ${cameraFocused ? 'rotateY-2' : 'rotateY-0'}
         `}
         style={{
-          width: '480px',
-          height: '800px',
+          width: '520px',
+          height: '850px',
           boxShadow: `
-            0 0 0 6px #c2410c,
-            0 30px 80px rgba(0,0,0,0.5),
-            inset 0 4px 8px rgba(255,255,255,0.1),
-            inset 0 -4px 8px rgba(0,0,0,0.3)
+            0 0 0 8px #c2410c,
+            0 35px 90px rgba(0,0,0,0.6),
+            inset 0 6px 12px rgba(255,255,255,0.15),
+            inset 0 -6px 12px rgba(0,0,0,0.4)
           `
         }}>
           
           {/* Top Brand Section */}
-          <div className="relative p-6 text-center">
-            <div className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 rounded-xl p-5 border-6 border-yellow-600 shadow-inner">
-              <h1 className="text-4xl font-bold text-red-800 font-mono tracking-wider drop-shadow-xl">
+          <div className="relative p-8 text-center">
+            <div className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 rounded-2xl p-6 border-6 border-yellow-600 shadow-inner">
+              <h1 className="text-5xl font-bold text-red-800 font-mono tracking-wider drop-shadow-2xl">
                 CV-MATIC
               </h1>
-              <p className="text-red-700 text-sm font-mono font-bold">CAREER DISPENSER</p>
-              <div className="flex justify-center mt-2">
-                <div className="w-20 h-2 bg-red-600 rounded-full"></div>
+              <p className="text-red-700 text-lg font-mono font-bold">CAREER DISPENSER</p>
+              <div className="flex justify-center mt-3">
+                <div className="w-24 h-3 bg-red-600 rounded-full"></div>
               </div>
             </div>
           </div>
 
           {/* Main Digital Screen */}
-          <div className="mx-6 mb-4">
-            <div className="bg-black rounded-xl border-8 border-gray-700 h-48 overflow-hidden shadow-inner relative">
-              <div className="absolute inset-0 bg-gradient-to-b from-green-400/20 via-green-400/10 to-transparent"></div>
-              <div className="absolute inset-2 bg-gradient-to-b from-gray-900 to-black rounded-lg"></div>
-              <VendingScreen 
+          <div className="mx-8 mb-6">
+            <div className="bg-black rounded-2xl border-8 border-gray-700 h-64 overflow-hidden shadow-inner relative">
+              <div className="absolute inset-0 bg-gradient-to-b from-green-400/30 via-green-400/15 to-transparent"></div>
+              <div className="absolute inset-3 bg-gradient-to-b from-gray-900 to-black rounded-xl">
+                <VendingScreen 
+                  sections={cvSections}
+                  selectedSection={selectedSection}
+                  machineState={machineState}
+                  onProductSelect={handleProductSelect}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Transparent Glass Product Display */}
+          <div className="mx-8 mb-6">
+            <div className="relative bg-gradient-to-b from-gray-200 to-gray-400 border-8 border-gray-600 rounded-2xl h-56 shadow-inner overflow-hidden">
+              {/* Glass effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/10 rounded-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-tl from-white/10 via-transparent to-transparent rounded-xl"></div>
+              
+              {/* Glass reflection */}
+              <div className="absolute top-4 left-4 w-16 h-32 bg-gradient-to-br from-white/40 to-transparent rounded-lg transform rotate-12"></div>
+              
+              <ProductGrid 
                 sections={cvSections}
                 selectedSection={selectedSection}
                 machineState={machineState}
-                onProductSelect={handleProductSelect}
               />
             </div>
           </div>
 
-          {/* Product Display Grid */}
-          <div className="mx-6 mb-4">
-            <ProductGrid 
-              sections={cvSections}
-              selectedSection={selectedSection}
-              machineState={machineState}
-            />
-          </div>
-
           {/* Physical Button Panel */}
-          <div className="mx-6 mb-4">
-            <div className="bg-gradient-to-b from-gray-700 to-gray-900 border-4 border-gray-600 rounded-xl p-3">
+          <div className="mx-8 mb-6">
+            <div className="bg-gradient-to-b from-gray-700 to-gray-900 border-6 border-gray-600 rounded-2xl p-4 shadow-inner">
               <VendingButtons 
                 sections={cvSections}
                 onProductSelect={handleProductSelect}
@@ -206,7 +216,7 @@ const VendingMachine: React.FC = () => {
           </div>
 
           {/* Collection Shelf */}
-          <div className="mx-6 mb-6">
+          <div className="mx-8 mb-8">
             <CollectionShelf 
               dispensedProduct={dispensedProduct}
               machineState={machineState}
@@ -214,41 +224,41 @@ const VendingMachine: React.FC = () => {
             />
           </div>
 
-          {/* Coin Slot and Change Return - Repositioned to bottom left */}
-          <div className="absolute bottom-4 left-6 flex items-center gap-4">
+          {/* Coin Slot and Change Return - Bottom left */}
+          <div className="absolute bottom-6 left-8 flex items-center gap-6">
             <div className="flex flex-col items-center">
-              <div className="w-12 h-6 bg-black rounded-full border-3 border-gray-400 shadow-inner relative overflow-hidden">
+              <div className="w-14 h-8 bg-black rounded-full border-4 border-gray-400 shadow-inner relative overflow-hidden">
                 <div className="absolute inset-1 bg-gradient-to-b from-gray-600 to-black rounded-full"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-1 h-4 bg-black rounded-full"></div>
+                  <div className="w-2 h-5 bg-black rounded-full"></div>
                 </div>
               </div>
-              <p className="text-xs text-yellow-200 font-mono font-bold mt-1">COINS</p>
+              <p className="text-sm text-yellow-200 font-mono font-bold mt-2">COINS</p>
             </div>
             
             <div className="flex flex-col items-center">
-              <div className="w-8 h-3 bg-black rounded border-2 border-gray-400 shadow-inner">
+              <div className="w-10 h-4 bg-black rounded border-3 border-gray-400 shadow-inner">
                 <div className="w-full h-full bg-gradient-to-b from-gray-600 to-black rounded-sm"></div>
               </div>
-              <p className="text-xs text-yellow-200 font-mono font-bold mt-1">CHANGE</p>
+              <p className="text-sm text-yellow-200 font-mono font-bold mt-2">CHANGE</p>
             </div>
           </div>
 
           {/* Side Ventilation Grilles */}
-          <div className="absolute left-3 top-1/3 w-6 h-40 bg-gradient-to-b from-red-700 to-red-900 rounded-lg">
-            {[...Array(12)].map((_, i) => (
-              <div key={i} className="w-full h-2 border-t-2 border-red-800 mt-2 first:mt-3"></div>
+          <div className="absolute left-4 top-1/3 w-8 h-48 bg-gradient-to-b from-red-700 to-red-900 rounded-xl">
+            {[...Array(15)].map((_, i) => (
+              <div key={i} className="w-full h-2 border-t-2 border-red-800 mt-2 first:mt-4"></div>
             ))}
           </div>
-          <div className="absolute right-3 top-1/3 w-6 h-40 bg-gradient-to-b from-red-700 to-red-900 rounded-lg">
-            {[...Array(12)].map((_, i) => (
-              <div key={i} className="w-full h-2 border-t-2 border-red-800 mt-2 first:mt-3"></div>
+          <div className="absolute right-4 top-1/3 w-8 h-48 bg-gradient-to-b from-red-700 to-red-900 rounded-xl">
+            {[...Array(15)].map((_, i) => (
+              <div key={i} className="w-full h-2 border-t-2 border-red-800 mt-2 first:mt-4"></div>
             ))}
           </div>
         </div>
 
         {/* Enhanced floor shadow */}
-        <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-[500px] h-12 bg-black/40 rounded-full blur-lg"></div>
+        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-[540px] h-16 bg-black/50 rounded-full blur-xl"></div>
       </div>
     </div>
   );
