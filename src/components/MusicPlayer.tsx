@@ -133,7 +133,15 @@ const MusicPlayer: React.FC = () => {
           step="0.1"
           value={volume}
           onChange={(e) => setVolume(parseFloat(e.target.value))}
-          className="w-full h-2 bg-cyber-border rounded-full appearance-none cursor-pointer slider"
+          className="w-full h-2 bg-cyber-border rounded-full appearance-none cursor-pointer 
+            [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 
+            [&::-webkit-slider-thumb]:bg-gradient-to-r [&::-webkit-slider-thumb]:from-neon-pink [&::-webkit-slider-thumb]:to-neon-cyan 
+            [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer 
+            [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(255,20,147,0.5)]
+            [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 
+            [&::-moz-range-thumb]:bg-gradient-to-r [&::-moz-range-thumb]:from-neon-pink [&::-moz-range-thumb]:to-neon-cyan 
+            [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none 
+            [&::-moz-range-thumb]:shadow-[0_0_10px_rgba(255,20,147,0.5)]"
         />
       </div>
 
@@ -164,28 +172,6 @@ const MusicPlayer: React.FC = () => {
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
       />
-
-      <style jsx>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          width: 16px;
-          height: 16px;
-          background: linear-gradient(45deg, #ff1493, #00ffff);
-          border-radius: 50%;
-          cursor: pointer;
-          box-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
-        }
-        
-        .slider::-moz-range-thumb {
-          width: 16px;
-          height: 16px;
-          background: linear-gradient(45deg, #ff1493, #00ffff);
-          border-radius: 50%;
-          cursor: pointer;
-          border: none;
-          box-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
-        }
-      `}</style>
     </div>
   );
 };

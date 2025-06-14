@@ -56,12 +56,12 @@ const Index = () => {
     }
   ];
 
-  const workExperience = [
+  const quests = [
     {
       company: "TechCorp Inc.",
       position: "Senior Full Stack Developer",
       duration: "2022 - Present",
-      status: "active",
+      status: "active" as const,
       description: "Leading development of micro-frontend architecture serving 100K+ users. Mentoring junior developers and implementing DevOps practices.",
       achievements: ["Reduced load time by 40%", "Led team of 5 developers", "Implemented CI/CD pipeline"]
     },
@@ -69,7 +69,7 @@ const Index = () => {
       company: "StartupXYZ",
       position: "Frontend Developer",
       duration: "2020 - 2022",
-      status: "completed",
+      status: "completed" as const,
       description: "Built responsive web applications using React and Redux. Collaborated with UX team to improve user engagement by 60%.",
       achievements: ["Improved user engagement by 60%", "Built responsive design system", "Optimized performance"]
     },
@@ -77,7 +77,7 @@ const Index = () => {
       company: "Digital Agency",
       position: "Junior Developer",
       duration: "2019 - 2020",
-      status: "completed",
+      status: "completed" as const,
       description: "Developed custom WordPress themes and e-commerce solutions. Gained experience in client communication and project management.",
       achievements: ["Delivered 15+ client projects", "Learned project management", "Built e-commerce solutions"]
     }
@@ -161,9 +161,9 @@ const Index = () => {
             </div>
 
             <div className="space-y-8">
-              <PlayerProfile {...playerData} />
+              <PlayerProfile playerData={playerData} />
               <SkillTree skills={skills} />
-              <QuestLog workExperience={workExperience} />
+              <QuestLog quests={quests} />
               <Achievements achievements={achievements} />
             </div>
           </div>
